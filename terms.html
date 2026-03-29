@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — MechSim</title>
+<meta name="description" content="MechSim terms of service. Rules and conditions for using our free browser-based kinematic simulator.">
+
+<!-- Google AdSense — replace with your publisher ID -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#07080d; --surf:#0d0f18; --surf2:#141725;
+  --border:#1c2235; --border2:#252d45;
+  --cyan:#4EE2EC; --amber:#FF8C42;
+  --metal:#BCC6CC; --metal2:#7d8f9a; --metal3:#3d4f5a;
+  --col-w: 760px; --ad-w: 180px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);color:var(--metal);
+  line-height:1.65;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(78,226,236,.016) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(78,226,236,.016) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.page-wrap{
+  position:relative;z-index:1;display:grid;
+  grid-template-columns: var(--ad-w) minmax(0,var(--col-w)) var(--ad-w);
+  min-height:100vh;
+  max-width:calc(var(--col-w) + var(--ad-w)*2 + 80px);
+  margin:0 auto;
+}
+.row-full{grid-column:1/-1}
+.row-content{grid-column:2}
+.ad-col{
+  grid-row:2/999;position:sticky;top:64px;
+  height:calc(100vh - 80px);
+  display:flex;flex-direction:column;align-items:center;
+  padding:16px 10px;gap:12px;overflow:hidden;
+}
+.ad-col-left{grid-column:1;border-right:1px solid var(--border)}
+.ad-col-right{grid-column:3;border-left:1px solid var(--border)}
+.ad-col-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--metal3)}
+.ad-slot-side{width:160px;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;flex-shrink:0}
+nav{
+  grid-column:1/-1;position:sticky;top:0;z-index:200;
+  background:rgba(7,8,13,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;height:56px;
+}
+.nav-logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.1rem;color:var(--cyan);margin-right:auto;letter-spacing:-.02em;text-decoration:none}
+.nav-logo em{font-style:italic;font-weight:300;color:var(--metal2)}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--metal2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{
+  margin-left:20px;padding:7px 18px;background:var(--cyan);color:#07080d;
+  font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;
+  letter-spacing:.04em;border-radius:4px;text-decoration:none;transition:background .2s;flex-shrink:0;
+}
+.nav-cta:hover{background:#7aedf5}
+
+section{padding:64px 32px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'DM Mono',monospace;font-size:.65rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--amber);
+  margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--amber)}
+h1{
+  font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:900;line-height:1.1;color:#e8ecf4;
+  letter-spacing:-.03em;margin-bottom:8px;
+}
+h1 em{font-style:italic;font-weight:300;color:var(--cyan)}
+.updated{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--metal3);margin-bottom:36px}
+.legal{max-width:600px}
+.legal h2{
+  font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;
+  color:#e8ecf4;margin:36px 0 10px;letter-spacing:-.01em;
+}
+.legal h2:first-of-type{margin-top:0}
+.legal p{font-size:.86rem;color:var(--metal2);line-height:1.75;margin-bottom:14px;max-width:100%}
+.legal a{color:var(--cyan);text-decoration:none}
+.legal a:hover{text-decoration:underline}
+.legal ul{list-style:none;margin:0 0 14px;padding:0}
+.legal li{
+  font-size:.86rem;color:var(--metal2);line-height:1.75;
+  padding-left:18px;position:relative;
+}
+.legal li::before{content:'›';position:absolute;left:0;color:var(--cyan);font-weight:700}
+
+footer{
+  padding:32px;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.flogo{font-family:'Fraunces',serif;font-weight:900;font-size:.95rem;color:var(--cyan)}
+.flinks{display:flex;gap:20px;list-style:none}
+.flinks a{font-size:.73rem;color:var(--metal3);text-decoration:none;transition:color .15s}
+.flinks a:hover{color:var(--metal2)}
+.fnote{font-size:.68rem;color:var(--metal3)}
+
+.mobile-ad-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:rgba(7,8,13,.95);border-top:1px solid var(--border);
+  align-items:center;justify-content:center;padding:6px;
+}
+.mobile-ad-bar ins{display:block !important}
+
+@media(max-width:1100px){:root{--ad-w:150px}.ad-slot-side{width:130px}}
+@media(max-width:880px){
+  .page-wrap{grid-template-columns:1fr;max-width:720px}
+  nav{grid-column:1}.ad-col{display:none}.mobile-ad-bar{display:flex}
+  body{padding-bottom:66px}
+  section{padding:48px 24px}.row-content{grid-column:1}
+}
+@media(max-width:560px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+<nav class="row-full">
+  <a href="index.html" class="nav-logo">Mech<em>Sim</em></a>
+  <ul class="nav-links">
+    <li><a href="tutorial.html">Tutorial</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+  </ul>
+  <a href="mechsim.html" class="nav-cta">Open Simulator →</a>
+</nav>
+
+<aside class="ad-col ad-col-left">
+  <div class="ad-col-label">Sponsored</div>
+  <div class="ad-slot-side">
+    <ins class="adsbygoogle" style="display:block;width:160px;height:600px"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="fixed"></ins>
+  </div>
+</aside>
+
+<!-- ══════════ CONTENT ══════════ -->
+<section class="row-content">
+  <div class="eyebrow">Legal</div>
+  <h1>Terms of <em>Service</em></h1>
+  <div class="updated">Last updated — March 2026</div>
+
+  <div class="legal">
+    <h2>1. Acceptance of Terms</h2>
+    <p>By accessing or using MechSim ("the Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Service.</p>
+
+    <h2>2. Description of Service</h2>
+    <p>MechSim is a free, browser-based kinematic mechanism simulator. The Service allows you to design, simulate, and analyze planar linkage mechanisms directly in your web browser. All computations run locally on your device.</p>
+
+    <h2>3. Use of the Service</h2>
+    <p>You may use MechSim for personal, educational, and commercial purposes. You agree not to:</p>
+    <ul>
+      <li>Attempt to reverse-engineer, decompile, or extract the source code of the simulator</li>
+      <li>Remove, alter, or obscure any copyright or proprietary notices</li>
+      <li>Use the Service in any way that could damage, disable, or impair the website</li>
+      <li>Use automated scripts or bots to interact with the Service</li>
+      <li>Interfere with or circumvent the advertising displayed on the Service</li>
+    </ul>
+
+    <h2>4. Intellectual Property</h2>
+    <p>The MechSim software, including its source code, design, user interface, documentation, and all associated materials, is the intellectual property of MechSim and is protected by applicable copyright laws. The Service is licensed, not sold.</p>
+    <p><strong>Your content.</strong> Any mechanisms, designs, or data you create using MechSim belong to you. We claim no ownership over your work. Files you save (<code>.mechsim.json</code>) and data you export (CSV) remain entirely yours.</p>
+
+    <h2>5. Disclaimer of Warranties</h2>
+    <p>The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, whether express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+    <p>We do not warrant that:</p>
+    <ul>
+      <li>The Service will be uninterrupted, secure, or error-free</li>
+      <li>Simulation results will be accurate or suitable for engineering decisions</li>
+      <li>Defects in the Service will be corrected</li>
+    </ul>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>MechSim is an educational and visualization tool. <strong>It is not a certified engineering tool.</strong> You should not rely on simulation results for safety-critical design decisions without independent verification by qualified professionals.</p>
+    <p>In no event shall MechSim, its authors, or contributors be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Service.</p>
+
+    <h2>7. Advertising</h2>
+    <p>The Service displays advertisements provided by Google AdSense. By using the Service, you acknowledge that advertisements are part of the user experience. Ad content is determined by Google and is not endorsed by MechSim.</p>
+
+    <h2>8. Third-Party Links</h2>
+    <p>The Service may contain links to third-party websites or services. We are not responsible for the content, privacy practices, or terms of any third-party sites.</p>
+
+    <h2>9. Modifications to the Service</h2>
+    <p>We reserve the right to modify, suspend, or discontinue the Service at any time, with or without notice. We shall not be liable to you or any third party for any modification, suspension, or discontinuation of the Service.</p>
+
+    <h2>10. Changes to These Terms</h2>
+    <p>We may update these terms from time to time. Changes will be posted on this page with an updated revision date. Your continued use of the Service after any changes constitutes acceptance of the revised terms.</p>
+
+    <h2>11. Governing Law</h2>
+    <p>These terms shall be governed by and construed in accordance with applicable laws. Any disputes arising from the use of the Service shall be resolved in the competent courts of the jurisdiction where the operator resides.</p>
+
+    <h2>12. Contact</h2>
+    <p>If you have questions about these terms, please contact us at: <a href="mailto:contact@mechsim.app">contact@mechsim.app</a></p>
+  </div>
+</section>
+
+<footer class="row-content">
+  <div class="flogo">MechSim</div>
+  <ul class="flinks">
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+    <li><a href="tutorial.html">Tutorial</a></li>
+    <li><a href="mechsim.html">Simulator</a></li>
+  </ul>
+  <div class="fnote">Free browser-based kinematic simulator</div>
+</footer>
+
+<aside class="ad-col ad-col-right">
+  <div class="ad-col-label">Sponsored</div>
+  <div class="ad-slot-side">
+    <ins class="adsbygoogle" style="display:block;width:160px;height:600px"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="fixed"></ins>
+  </div>
+</aside>
+
+</div>
+
+<div class="mobile-ad-bar">
+  <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px"
+       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  try {
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  } catch(e) {}
+});
+</script>
+</body>
+</html>
