@@ -5,16 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MechSim — Free Browser-Based Kinematic Mechanism Simulator</title>
 <meta name="description" content="Design, simulate, and analyze planar linkage mechanisms in your browser. Free, zero-install kinematic simulator with Newton-Raphson constraint solver.">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHK141B152"></script>
+<!-- Consent Mode v2 — default denied (GDPR) -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZHK141B152');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{
+  ad_storage:'denied',
+  ad_user_data:'denied',
+  ad_personalization:'denied',
+  analytics_storage:'denied',
+  wait_for_update:500
+});
+gtag('js', new Date());
+gtag('config', 'G-ZHK141B152');
 </script>
-<!-- Google AdSense — replace with your publisher ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZHK141B152"></script>
+<!-- Google AdSense — replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,7 +80,7 @@ nav{
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;padding:0 24px;height:56px;
 }
-.nav-logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.1rem;color:var(--cyan);margin-right:auto;letter-spacing:-.02em}
+.nav-logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.1rem;color:var(--cyan);margin-right:auto;letter-spacing:-.02em;text-decoration:none}
 .nav-logo em{font-style:italic;font-weight:300;color:var(--metal2)}
 .nav-links{display:flex;gap:24px;list-style:none}
 .nav-links a{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--metal2);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
@@ -242,6 +248,32 @@ footer{
   section{padding:36px 20px}.row-content{grid-column:1}
 }
 @media(max-width:560px){.nav-links{display:none}}
+/* ── COOKIE BANNER ── */
+.cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:9999;
+  background:var(--surf);border-top:1px solid var(--border2);
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  flex-wrap:wrap;
+  transform:translateY(100%);transition:transform .35s ease;
+}
+.cookie-banner.show{transform:translateY(0)}
+.cookie-txt{font-size:.78rem;color:var(--metal2);max-width:600px;line-height:1.6}
+.cookie-txt a{color:var(--cyan);text-decoration:none}
+.cookie-txt a:hover{text-decoration:underline}
+.cookie-btns{display:flex;gap:8px;flex-shrink:0}
+.cookie-btn{
+  padding:8px 18px;border-radius:4px;border:none;cursor:pointer;
+  font-family:'DM Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.03em;transition:all .15s;
+}
+.cookie-accept{background:var(--cyan);color:#07080d}
+.cookie-accept:hover{background:#7aedf5}
+.cookie-reject{background:transparent;color:var(--metal2);border:1px solid var(--border2)}
+.cookie-reject:hover{border-color:var(--metal2);color:var(--metal)}
+@media(max-width:880px){
+  .cookie-banner{padding-bottom:72px}
+}
 </style>
 </head>
 <body>
@@ -250,7 +282,7 @@ footer{
 
 <!-- ── NAV ── -->
 <nav class="row-full">
-  <div class="nav-logo">Mech<em>Sim</em></div>
+  <a href="index.html" class="nav-logo">Mech<em>Sim</em></a>
   <ul class="nav-links">
     <li><a href="tutorial.html">Tutorial</a></li>
     <li><a href="privacy.html">Privacy</a></li>
@@ -425,6 +457,34 @@ window.addEventListener('load', () => {
     (adsbygoogle = window.adsbygoogle || []).push({}); // mobile
   } catch(e) {}
 });
+</script>
+<!-- ── COOKIE CONSENT BANNER ── -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-txt">We use cookies for analytics and advertising via Google Analytics and AdSense. No personal mechanism data is collected. <a href="privacy.html">Privacy Policy</a></div>
+  <div class="cookie-btns">
+    <button class="cookie-btn cookie-reject" id="cookieReject">Reject</button>
+    <button class="cookie-btn cookie-accept" id="cookieAccept">Accept</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var consent = localStorage.getItem('mechsim_consent');
+  if(consent === 'granted'){
+    gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+  } else if(consent !== 'denied'){
+    setTimeout(function(){ document.getElementById('cookieBanner').classList.add('show'); }, 800);
+  }
+  document.getElementById('cookieAccept').addEventListener('click',function(){
+    localStorage.setItem('mechsim_consent','granted');
+    gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+  document.getElementById('cookieReject').addEventListener('click',function(){
+    localStorage.setItem('mechsim_consent','denied');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+})();
 </script>
 </body>
 </html>
