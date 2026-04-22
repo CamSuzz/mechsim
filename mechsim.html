@@ -43,6 +43,8 @@ header{display:flex;align-items:center;gap:10px;padding:8px 16px;background:var(
 .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:-.01em;color:var(--accent);white-space:nowrap}
 .logo span{font-weight:400;opacity:.45;color:var(--text)}
 .hctrl{display:flex;align-items:center;gap:6px;margin-left:auto;flex-wrap:nowrap}
+/* ── SCROLL HINT (mobile) ── */
+.scroll-hint{display:none;position:absolute;right:0;top:0;height:100%;width:48px;align-items:center;justify-content:center;background:linear-gradient(to right,transparent,var(--surface) 55%);pointer-events:none;z-index:101;transition:opacity .45s ease;color:rgba(78,226,236,.6);font-size:1.15rem;padding-right:6px}
 
 /* ── BUTTONS ── */
 .btn{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border-radius:5px;border:1px solid var(--border2);background:var(--surface2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.71rem;cursor:pointer;transition:all .15s;white-space:nowrap;-webkit-tap-highlight-color:transparent}
@@ -123,6 +125,10 @@ canvas{position:absolute;top:0;left:0;touch-action:none;cursor:crosshair}
   .logo span,.spd-lbl{display:none}
   .adisplay{top:auto;bottom:55px;right:7px}
   .info,.legend{display:none}
+  header{position:relative;overflow:hidden}
+  .hctrl{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-right:4px}
+  .hctrl::-webkit-scrollbar{display:none}
+  .scroll-hint{display:flex}
 }
 
 /* ── RECORDING ── */
@@ -198,7 +204,7 @@ canvas{position:absolute;top:0;left:0;touch-action:none;cursor:crosshair}
 <header>
   <button class="mmbtn" id="menuBtn">☰</button>
   <div class="logo">Mech<span>Sim</span></div>
-  <div class="hctrl">
+  <div class="hctrl" id="hctrl">
     <div class="spd" title="Solver tolerance">
       <span class="spd-lbl" style="color:var(--text3);font-size:.67rem">tol</span>
       <input class="pi" id="solverTol" type="number" value="0.01" min="0.001" max="1" step="0.001" style="width:52px;font-size:.67rem;padding:2px 4px">
@@ -223,6 +229,7 @@ canvas{position:absolute;top:0;left:0;touch-action:none;cursor:crosshair}
     <button class="btn" id="dataBtn" title="View data">📊</button>
     <button class="btn danger" id="clearBtn">✕ Clear</button>
   </div>
+  <div class="scroll-hint" id="scrollHint">›</div>
 </header>
 <div class="main">
   <div class="sidebar" id="sidebar">
