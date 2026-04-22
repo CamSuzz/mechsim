@@ -33,8 +33,7 @@ gtag('config', 'G-ZHK141B152');
   --cyan:#4EE2EC; --amber:#FF8C42;
   --metal:#BCC6CC; --metal2:#7d8f9a; --metal3:#3d4f5a;
   --red:#e05260; --violet:#a78bfa;
-  --col-w: 760px;
-  --ad-w: 180px;
+  --col-w: 1100px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -54,31 +53,21 @@ body::before{
 /* ── LAYOUT ── */
 .page-wrap{
   position:relative;z-index:1;
-  display:grid;
-  grid-template-columns: var(--ad-w) minmax(0,var(--col-w)) var(--ad-w);
-  min-height:100vh;
-  max-width:calc(var(--col-w) + var(--ad-w)*2 + 80px);
+  max-width:var(--col-w);
   margin:0 auto;
+  min-height:100vh;
+  padding:0 24px;
 }
-.row-full{grid-column:1/-1}
-.row-content{grid-column:2}
-.ad-col{
-  grid-row:2/999;position:sticky;top:64px;
-  height:calc(100vh - 80px);
-  display:flex;flex-direction:column;align-items:center;
-  padding:16px 10px;gap:12px;overflow:hidden;
-}
-.ad-col-left{grid-column:1;border-right:1px solid var(--border)}
-.ad-col-right{grid-column:3;border-left:1px solid var(--border)}
-.ad-col-label{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--metal3)}
-.ad-slot-side{width:160px;display:flex;align-items:flex-start;justify-content:center;overflow:hidden;flex-shrink:0}
+.row-full,.row-content{display:block}
 
 /* ── NAV ── */
 nav{
-  grid-column:1/-1;position:sticky;top:0;z-index:200;
+  position:sticky;top:0;z-index:200;
   background:rgba(7,8,13,.93);backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
   display:flex;align-items:center;padding:0 24px;height:56px;
+  /* stretch nav edge-to-edge despite page-wrap padding */
+  margin-left:-24px;margin-right:-24px;
 }
 .nav-logo{font-family:'Fraunces',serif;font-weight:900;font-size:1.1rem;color:var(--cyan);margin-right:auto;letter-spacing:-.02em;text-decoration:none}
 .nav-logo em{font-style:italic;font-weight:300;color:var(--metal2)}
@@ -187,16 +176,6 @@ a{color:var(--cyan)}
 
 /* ── DIVIDER ── */
 .divider{height:1px;background:var(--border);margin:0 32px}
-
-/* ── INLINE AD BANNER ── */
-.ad-banner-inline{
-  display:flex;align-items:center;justify-content:center;
-  padding:16px 32px;
-  background:var(--surf);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
-.ad-banner-inline ins{display:block !important}
 
 /* ── HOW IT WORKS ── */
 .steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:24px;counter-reset:step}
@@ -325,14 +304,6 @@ kbd{
 .fade{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
 .fade.in{opacity:1;transform:translateY(0)}
 
-/* ── MOBILE AD ── */
-.mobile-ad-bar{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
-  background:rgba(7,8,13,.95);border-top:1px solid var(--border);
-  align-items:center;justify-content:center;padding:6px;
-}
-.mobile-ad-bar ins{display:block !important}
-
 /* ── COOKIE BANNER ── */
 .cookie-banner{
   position:fixed;bottom:0;left:0;right:0;z-index:9999;
@@ -358,15 +329,11 @@ kbd{
 .cookie-reject:hover{border-color:var(--metal2);color:var(--metal)}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1100px){:root{--ad-w:150px}.ad-slot-side{width:130px}}
 @media(max-width:880px){
-  .page-wrap{grid-template-columns:1fr;max-width:720px}
-  nav{grid-column:1}.ad-col{display:none}.mobile-ad-bar{display:flex}
-  body{padding-bottom:66px}
   .features,.steps,.mech-grid,.two,.two.wide{grid-template-columns:1fr}
   .stats-bar{gap:24px;flex-wrap:wrap}
   .kgrid{grid-template-columns:1fr}
-  section{padding:40px 20px}.row-content{grid-column:1}
+  section{padding:40px 20px}
   .cookie-banner{padding-bottom:72px}
 }
 @media(max-width:560px){.nav-links{display:none}}
@@ -390,18 +357,6 @@ kbd{
   </ul>
   <a href="mechsim.html" class="nav-cta">Open Simulator →</a>
 </nav>
-
-<!-- ── LEFT AD ── -->
-<aside class="ad-col ad-col-left">
-  <div class="ad-col-label">Sponsored</div>
-  <div class="ad-slot-side">
-    <ins class="adsbygoogle"
-         style="display:block;width:160px;height:600px"
-         data-ad-client="ca-pub-8232965823728109"
-         data-ad-slot="XXXXXXXXXX"
-         data-ad-format="fixed"></ins>
-  </div>
-</aside>
 
 <!-- ══════════ CONTENT ══════════ -->
 
@@ -470,15 +425,6 @@ kbd{
     </div>
   </div>
 </section>
-
-<!-- ── INLINE AD BANNER (728×90) ── -->
-<div class="ad-banner-inline row-content">
-  <ins class="adsbygoogle"
-       style="display:block;width:100%;max-width:728px;height:90px"
-       data-ad-client="ca-pub-8232965823728109"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="horizontal"></ins>
-</div>
 
 <!-- ── HOW IT WORKS ── -->
 <section class="row-content fade">
@@ -795,15 +741,6 @@ Press <span class="ck">Space</span> → watch it move
 
 <div class="divider row-content"></div>
 
-<!-- ── INLINE AD BANNER 2 ── -->
-<div class="ad-banner-inline row-content">
-  <ins class="adsbygoogle"
-       style="display:block;width:100%;max-width:728px;height:90px"
-       data-ad-client="ca-pub-8232965823728109"
-       data-ad-slot="XXXXXXXXXX"
-       data-ad-format="horizontal"></ins>
-</div>
-
 <!-- ── SOLVER ── -->
 <section class="row-content fade" id="solver">
   <div class="two wide">
@@ -938,27 +875,7 @@ q ← q − Jᵀ(JJᵀ + λI)⁻¹ f(q)
   <div class="fnote">© 2026 MechSim — Free browser-based kinematic simulator</div>
 </footer>
 
-<!-- ── RIGHT AD ── -->
-<aside class="ad-col ad-col-right">
-  <div class="ad-col-label">Sponsored</div>
-  <div class="ad-slot-side">
-    <ins class="adsbygoogle"
-         style="display:block;width:160px;height:600px"
-         data-ad-client="ca-pub-8232965823728109"
-         data-ad-slot="XXXXXXXXXX"
-         data-ad-format="fixed"></ins>
-  </div>
-</aside>
-
 </div><!-- /page-wrap -->
-
-<!-- ── MOBILE AD ── -->
-<div class="mobile-ad-bar">
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:320px;height:50px"
-       data-ad-client="ca-pub-8232965823728109"
-       data-ad-slot="XXXXXXXXXX"></ins>
-</div>
 
 <script>
 // Scroll-reveal
@@ -975,17 +892,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if(!wasOpen) item.classList.add('open');
   });
-});
-
-// Init AdSense (left col, right col, inline banner 1, inline banner 2, mobile)
-window.addEventListener('load', () => {
-  try {
-    (adsbygoogle = window.adsbygoogle || []).push({}); // left col
-    (adsbygoogle = window.adsbygoogle || []).push({}); // right col
-    (adsbygoogle = window.adsbygoogle || []).push({}); // inline banner 1
-    (adsbygoogle = window.adsbygoogle || []).push({}); // inline banner 2
-    (adsbygoogle = window.adsbygoogle || []).push({}); // mobile
-  } catch(e) {}
 });
 </script>
 
